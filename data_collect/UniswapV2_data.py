@@ -18,11 +18,11 @@ uniswap_v2_contract = w3.eth.contract(address=w3.to_checksum_address(uniswap_v2_
 start_block = 16870000
 end_block = 16874326
 
-# 'PairCreated' 이벤트 시그니처 가져오기c
+# 'PairCreated' 이벤트 시그니처 가져오기
 pair_created_event_signature = w3.keccak(text="PairCreated(address,address,address,uint256)").hex()
 
 # 필터 설정 및 이벤트 로그 가져오기
-event_filter = w3.eth.filter({"fromBlock": start_block, "toBlock": end_block, "address": uniswap_v2_address, "pair" : "0x8e5A23c7b4003e26Db061CCE357185857b1f5409","topics": [pair_created_event_signature]})
+event_filter = w3.eth.filter({"fromBlock": start_block, "toBlock": end_block, "address": uniswap_v2_address, "topics": [pair_created_event_signature]})
 event_logs = event_filter.get_all_entries()
 
 # 이벤트 로그 출력
